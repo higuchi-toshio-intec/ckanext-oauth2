@@ -115,10 +115,14 @@ class OAuth2Helper(object):
             )
 
         try:
+            req_url = toolkit.request.url
+            ckan_site_url = os.environ.get('CKAN_SITE_URL')
+            if (ckan_site_url.startswith("https:")):
+                req_url = req_url.replace("http:", "https:")
             token = oauth.fetch_token(self.token_endpoint,
                                       headers=headers,
                                       client_secret=self.client_secret,
-                                      authorization_response=toolkit.request.url,
+                                      authorization_response=req_url,
                                       verify=self.verify_https)
         except requests.exceptions.SSLError as e:
             # TODO search a better way to detect invalid certificates
