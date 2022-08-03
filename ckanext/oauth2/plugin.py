@@ -76,9 +76,9 @@ def _get_previous_page(default_page):
 
     # When a user is being logged and REFERER == HOME or LOGOUT_PAGE
     # he/she must be redirected to the dashboard
-    pages = ['/', '/user/logged_out_redirect']
-    if came_from_url_parsed.path in pages:
-        came_from_url = default_page
+#    pages = ['/', '/user/logged_out_redirect']
+#    if came_from_url_parsed.path in pages:
+#        came_from_url = default_page
 
     return came_from_url
 
